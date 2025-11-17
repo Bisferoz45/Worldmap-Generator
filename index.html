@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./scripts/script.js"></script>
+    <link rel="stylesheet" href="./style/style.css">
+    <title>Generador de mundos</title>
+</head>
+<body id="grid-page-continer">
+    <section id="page-title">
+        <h1>GENERADOR DE MUNDOS</h1>
+    </section>
+    
+    <!-- SECCIÓN DEL FORMULARIO -->
+
+    <section id="form-section">
+        <form id="map-form">
+            <section class="map-form-area-section">
+                <h2 class="sectionTitle">GENERAL DATA</h2>
+                <section class="map-input-section">
+                    <h4 class="input-title">Map size</h4>
+                    <input type="number" class="input" name="G-MpSz"><span class="measure">m²</span>
+                </section>
+                <section class="map-input-section">
+                    <h4 class="input-title">Max ocuped area</h4>
+                    <input type="number" class="input" name="G-MOA"><span class="measure">%</span>
+                </section>
+            </section>
+            
+            <section class="map-form-area-section">
+                <h2 class="sectionTitle">NATURE DATA</h2>
+                <section class="map-input-section">
+                    <h4 class="input-title">Min zones</h4>
+                    <input type="number" class="input" name="N-MnZ">
+                </section>
+                <section class="map-input-section">
+                    <h4 class="input-title">Max zones</h4>
+                    <input type="number" class="input" name="N-MxZ">
+                </section>
+                <section class="map-input-section">
+                    <h4 class="input-title">Zone max size</h4>
+                    <input type="number" class="input" name="N-MxZ">
+                </section>
+                <section class="map-input-section">
+                    <h4 class="input-title">Total max size</h4>
+                    <input type="number" class="input" name="N-TMS">
+                </section>
+            </section>
+
+            <section class="map-form-area-section">
+                <h2 class="sectionTitle">URBAN DATA</h2>
+                <section class="map-input-section">
+                    <h4 class="input-title">Min zones</h4>
+                    <input type="number" class="input" name="N-MnZ">
+                </section>
+                <section class="map-input-section">
+                    <h4 class="input-title">Max zones</h4>
+                    <input type="number" class="input" name="N-MxZ">
+                </section>
+                <section class="map-input-section">
+                    <h4 class="input-title">Zone max size</h4>
+                    <input type="number" class="input" name="N-MxZ">
+                </section>
+                <section class="map-input-section">
+                    <h4 class="input-title">Total max size</h4>
+                    <input type="number" class="input" name="N-TMS">
+                </section>
+            </section>
+
+            <section class="map-form-area-section">
+                <h2 class="sectionTitle">COMMERCIAL DATA</h2>
+                <section class="map-input-section">
+                    <h4 class="input-title">Min zones</h4>
+                    <input type="number" class="input" name="N-MnZ">
+                </section>
+                <section class="map-input-section">
+                    <h4 class="input-title">Max zones</h4>
+                    <input type="number" class="input" name="N-MxZ">
+                </section>
+                <section class="map-input-section">
+                    <h4 class="input-title">Zone max size</h4>
+                    <input type="number" class="input" name="N-MxZ">
+                </section>
+                <section class="map-input-section">
+                    <h4 class="input-title">Total max size</h4>
+                    <input type="number" class="input" name="N-TMS">
+                </section>
+            </section>
+            <section class="map-form-area-section" id="generate">
+                <h2 class="sectionTitle">GENERATE MAP</h2>
+                <button type="submit" id="submt-form-button">GENERATE</button>
+            </section>
+        </form>
+    </section>
+
+    <!-- SECCIÓN DEL MAPA -->
+
+    <setion id="map-section">
+        <table id="map-desk">
+
+        </table>
+    </setion>
+</body>
+</html>

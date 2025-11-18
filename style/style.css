@@ -78,6 +78,11 @@
     margin-bottom: 5px;
 }
 
+.wrongInput{
+    background-color: rgba(241, 0, 0, 0.144);
+    border-color: rgb(241, 0, 0);
+}
+
 .measure{
     font-size: 30px;
     margin-left: 10px;

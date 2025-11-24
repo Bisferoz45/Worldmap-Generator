@@ -1,3 +1,6 @@
+import { Map } from "./map.js";
+
+
 document.addEventListener("DOMContentLoaded", () => {
     loadReferences();
     const mapForm = document.getElementById("map-form");
@@ -52,22 +55,28 @@ document.addEventListener("DOMContentLoaded", () => {
             alert(errormsg);    
         }else{
 
-        /* CREACIÓN DE CASILLAS DEL MAPA */
+            /* GENERACIÓN DE MAPA */ 
+            /* CREACIÓN DE CASILLAS DEL MAPA */
             if(!mapSection.hasChildNodes()){
                 mapSection.innerHTML = '';
             }
-            //Matriz: height -> filas, width -> columnas
-            let map = Array.from({length: document.querySelector(`input[name="G-MpSz"]`).value}, () => 
-                      Array.from({length: document.querySelector(`input[name="G-MpSz"]`).value}, () => 0)
-            );
-
-            const startCordX = Number(Math.floor(Math.random() * (Number(document.querySelector(`input[name="G-MpSz"]`).value))));
-            let startCordY = Number(Math.floor(Math.random() * (Number(document.querySelector(`input[name="G-MpSz"]`).value))));
             
-            console.log(`Pos X: ${startCordX}\nPos Y: ${startCordY}`);
+            /* ESTABLECIENDO VALORES */
+            let totalMapOcupedArea = Math.pow(getValueOf("G-MpSz"), 2) * getValueOf("G-MOA") / 100;
+            let startPosMap = [Math.floor(Math.random() * (getValueOf("G-MpSz") - 0) + 0), Math.floor(Math.random() * (getValueOf("G-MpSz") - 0) + 0)];
+            let natureValues = [Math.floor(Math.random() * (getValueOf("N-MxZ") - getValueOf("N-MnZ")) + getValueOf("N-MnZ")), getValueOf("N-ZMS"), getValueOf("N-TMS")];
+            let urbanValues = [Math.floor(Math.random() * (getValueOf("U-MxZ") - getValueOf("U-MnZ")) + getValueOf("U-MnZ")), getValueOf("U-ZMS"), getValueOf("U-TMS")];
+            let commercialValues = [Math.floor(Math.random() * (getValueOf("C-MxZ") - getValueOf("C-MnZ")) + getValueOf("C-MnZ")), getValueOf("C-ZMS"), getValueOf("C-TMS")];
+            
+            /* GENERAR MAPA */
+            let map = new Map(getValueOf("G-MpSz"), totalMapOcupedArea, natureValues, urbanValues, commercialValues);
+            map.generateMap(startPosMap, natureValues, urbanValues, commercialValues);
+
         }
     });
 });
+
+let referenceData = {};
 
 function getReferencedName(reference) {
     return referenceData[reference];
@@ -76,4 +85,8 @@ function getReferencedName(reference) {
 async function loadReferences() {
     const res = await fetch("./resources/references.json");
     referenceData = await res.json();
+}
+
+function getValueOf(data){
+    return Number(document.querySelector(`input[name="${data}"]`).value);
 }

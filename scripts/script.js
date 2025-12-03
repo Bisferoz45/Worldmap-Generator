@@ -1,92 +1,36 @@
-import { Map } from "./map.js";
+import { tags } from "../resources/TagReferences.js";
+import { generateMapBoard, getRandomCords } from "./map.js";
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    loadReferences();
-    const mapForm = document.getElementById("map-form");
-    const mapSection = document.getElementById("map-section");
-
-    mapForm.addEventListener("submit", (event) => {
+document.addEventListener("DOMContentLoaded", (event) => {
+    document.getElementById("map-form").addEventListener("submit", (event) => {
         event.preventDefault();
-        const datas = [
-            /* GENERAL */
-            "G-MpSz", //Map size
-            "G-MOA",  //Max ocuped area
+        const mapSize = document.querySelector("input[name=G-MpSz]").value;
 
-            /* NATURE */
-            "N-MnZ",  //Min zones
-            "N-MxZ",  //Max zones
-            "N-ZMS",  //Zone max size
-            "N-TMS",  //Total max size
+                                                                               //↓ CANTIDAD DE ZONAS DE LAS QUE DISPONDRÁ ↓\\
+        const natureData = [Math.floor(Math.random() * (document.querySelector("input[name=N-MnZ]").value - document.querySelector("input[name=N-MxZ]").value) + document.querySelector("input[name=N-MxZ]").value),
+                            document.querySelector("input[name=N-ZMS]").value, //NATURE - ZONE MAX SIZE
+                            document.querySelector("input[name=N-TMS]").value] //NATURE - TOTAL MAX SIZE
 
-            /* URBAN */
-            "U-MnZ",  //Min zones
-            "U-MxZ",  //Max zones
-            "U-ZMS",  //Zone max size
-            "U-TMS",  //Total max size
+                                                                              //↓ CANTIDAD DE ZONAS DE LAS QUE DISPONDRÁ ↓\\
+        const urbanData = [Math.floor(Math.random() * (document.querySelector("input[name=U-MnZ]").value - document.querySelector("input[name=U-MxZ]").value) + document.querySelector("input[name=U-MxZ]").value),
+                           document.querySelector("input[name=U-ZMS]").value, //URBAN - ZONE MAX SIZE
+                           document.querySelector("input[name=U-TMS]").value] //URBAN - TOTAL MAX SIZE
 
-            /* COMMERCIAL */
-            "C-MnZ",  //Min zones
-            "C-MxZ",  //Max zones
-            "C-ZMS",  //Zone max size
-            "C-TMS"   //Total max size
-        ];
-
-        /* VALIDACIÓN DE DATOS */
-        const errors = [];
-
-        datas.forEach(data => {
-            const input = document.querySelector(`input[name="${data}"]`);
-            const value = Number(input.value);
+                                                                                   //↓ CANTIDAD DE ZONAS DE LAS QUE DISPONDRÁ ↓\\
+        const commertialData = [Math.floor(Math.random() * (document.querySelector("input[name=U-MnZ]").value - document.querySelector("input[name=U-MxZ]").value) + document.querySelector("input[name=U-MxZ]").value),
+                                document.querySelector("input[name=U-ZMS]").value, //COMMERTIAL - ZONE MAX SIZE
+                                document.querySelector("input[name=U-TMS]").value] //COMMERTIAL - TOTAL MAX SIZE
         
-            if (!(typeof value === "number" && !isNaN(value) && value > 0)) {
-                input.classList.add("wrongInput");
-                errors.push(getReferencedName(data)); 
-            }else{
-                input.classList.remove("wrongInput");
-            }
-        });
-
-        if (errors.length > 0) {
-            let errormsg = "ERROR: Los siguientes campos contienen valores inválidos:\n";
-            errors.forEach(error => {
-                errormsg += `- ${error}\n`;
-            });
-            alert(errormsg);    
-        }else{
-
-            /* GENERACIÓN DE MAPA */ 
-            /* CREACIÓN DE CASILLAS DEL MAPA */
-            if(!mapSection.hasChildNodes()){
-                mapSection.innerHTML = '';
-            }
-            
-            /* ESTABLECIENDO VALORES */
-            let totalMapOcupedArea = Math.pow(getValueOf("G-MpSz"), 2) * getValueOf("G-MOA") / 100;
-            let startPosMap = [Math.floor(Math.random() * (getValueOf("G-MpSz") - 0) + 0), Math.floor(Math.random() * (getValueOf("G-MpSz") - 0) + 0)];
-            let natureValues = [Math.floor(Math.random() * (getValueOf("N-MxZ") - getValueOf("N-MnZ")) + getValueOf("N-MnZ")), getValueOf("N-ZMS"), getValueOf("N-TMS")];
-            let urbanValues = [Math.floor(Math.random() * (getValueOf("U-MxZ") - getValueOf("U-MnZ")) + getValueOf("U-MnZ")), getValueOf("U-ZMS"), getValueOf("U-TMS")];
-            let commercialValues = [Math.floor(Math.random() * (getValueOf("C-MxZ") - getValueOf("C-MnZ")) + getValueOf("C-MnZ")), getValueOf("C-ZMS"), getValueOf("C-TMS")];
-            
-            /* GENERAR MAPA */
-            let map = new Map(getValueOf("G-MpSz"), totalMapOcupedArea, natureValues, urbanValues, commercialValues);
-            map.generateMap(startPosMap, natureValues, urbanValues, commercialValues);
-
-        }
+        let mapBoard = generateMapBoard(mapSize);
+        let cords = getRandomCords(mapSize);
+        mapBoard[cords[0]][cords[1]] = getRandomType();
+        console.log(mapBoard);
+        
     });
 });
 
-let referenceData = {};
+function getZoneSize(){} //Devuelve la cantidad de casillas con las que contara una zona
 
-function getReferencedName(reference) {
-    return referenceData[reference];
-}
-
-async function loadReferences() {
-    const res = await fetch("./resources/references.json");
-    referenceData = await res.json();
-}
-
-function getValueOf(data){
-    return Number(document.querySelector(`input[name="${data}"]`).value);
+function getRandomType(){
+    return Math.floor(Math.random() * (3 - 1) + 1);
 }

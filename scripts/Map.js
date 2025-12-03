@@ -1,52 +1,54 @@
-export class Map{
-    constructor(size, totalMapOpupedArea){
-        this.map = new Array(size);
-        for(let row = 0; row < size; row++){
-            this.map[row] = new Array(size);
+export { generateMapBoard, getRandomCords }
+
+function generateMapBoard(mapSize){
+    let mapBoard = []
+    for(let r = 0; r < mapSize; r++){
+        mapBoard[r] = [];
+        for(let c = 0; c < mapSize; c++){
+            mapBoard[r][c] = 0;
         }
-        this.totalMapOpupedArea = totalMapOpupedArea;
     }
+    return mapBoard;
+}
+
+function getRandomCords(mapSize){
+    let row = Math.floor(Math.random() * (mapSize - 0) + 0);
+    let col = Math.floor(Math.random() * (mapSize - 0) + 0);
+    return [row, col];
+}
+
+function setZoneOnMapBoard(mapBoard, boxCant, type){
     
-    generateMap(initialCord, natureValues, urbanValues, commertialValues){
-        while(this.totalMapOpupedArea > 0){
-            this.setZone(Math.floor(Math.random() * 3 + 1), )
-        }
+}
+
+function getDirectionExpand(){
+    switch(Math.floor(Math.random() * (8 - 1) + 1)){
+        case 1:
+            return "NORTH";
+        break;
+        case 2:
+            return "NORTH-EAST";
+        break;
+        case 3:
+            return "EAST";
+        break;
+        case 4:
+            return "SOUTH-EAST";
+        break;
+        case 5:
+            return "SOUTH";
+        break;
+        case 6:
+            return "SOUTH-WEST";
+        break;
+        case 7:
+            return "WEST";
+        break;
+        case 8:
+            return "NORTH-WEST";
+        break;
+        default:
+            return "ERROR: Valor de dirección incorrecto."
+        break;
     }
-
-    setZone(type, cords, maxSize){
-        switch(type){
-                case 1:
-                    set
-
-
-                break;
-                case 2:
-                    
-                break;
-                case 3:
-                    
-                break;
-                default:
-                    console.log("default");
-                break;
-            }
-    }
-
-    getRoundedCord(cord){
-        
-    }
-
-    getTotalMapArea(){
-        return Math.pow(this.map.length, 2);
-    }
-
-    showMapValues(){
-        for(let row = 0; row < this.map.length; row++){
-            for(let col = 0; col < this.map[row].length; col++){
-                console.log(`El valor de la columna '${col+1}' en la fila '${row+1}' es: ${this.map[row][col]}`);
-            }
-        }
-    }
-
-
 }

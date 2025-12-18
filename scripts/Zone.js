@@ -1,3 +1,6 @@
+/**
+ * Esta clase guarda los datos de las distintas zonas que puede tener el mapa.
+ */
 export class Zone{
     constructor(zoneType, noz, zmis, zmxs, tbc){
         this.zoneType = zoneType;
@@ -7,40 +10,50 @@ export class Zone{
         this.totalBoxesCount = tbc;
     }
 
-    
-
+    /**
+     * Este método devuelve el tipo de zona que es.
+     * @returns {string} - Tipo de la zona.
+     */
     getZoneType() {
         return this.zoneType;
     }
 
+    /**
+     * Este método devuelve el número de zonas que puede generar.
+     * @returns {int} - Número de zonas que puede generar.
+     */
     getNumberOfZones(){
         return this.numberOfZones;
     }
 
+    /**
+     * Este método devuelve el tamaño mínimo de las zonas.
+     * @returns {int} - Tamaño mínimo de las zonas.
+     */
     getZoneMinSize(){
         return this.zoneMinSize;
     }
 
+    /**
+     * Este método devuelve el tamaño máximo de las zonas.
+     * @returns {int} - Tamaño máximo de las zonas.
+     */
     getZoneMaxSize(){
         return this.zoneMaxSize;
     }
 
+    /**
+     * Este método devuelve la cantidad de casillas que puede generar.
+     * @returns {int} - Cantidad de casillas que puede generar.
+     */
     getTotalBoxesCount(){
         return this.totalBoxesCount;
     }
 
-    setNumberOfZones(noz){
-        this.numberOfZones = noz;
-    }
-
-    setZoneMinSize(zmis){
-        this.zoneMinSize = zmis;
-    }
-
-    setZoneMaxSize(zmxs){
-        this.zoneMaxSize = zmxs;
-    }
-
+    /**
+     * Este método esteblece el valor del atributo . totalBoxesCoun
+     * @param {int} tbc - Número que representará la cantidad de casillas disponibles para la zona. 
+     */
     setTotalBoxesCount(tbc){
         this.totalBoxesCount = tbc;
     }

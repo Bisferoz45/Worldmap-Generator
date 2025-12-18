@@ -24,19 +24,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //COMPROBACIÓN DE ZONAS
         while(zones.length > 0){
+            let cords = map.getRandomCoord();
+            const zone = getRandomZone(zones);
+            let zoneID = 1;
             
+            if(zone.getTotalBoxesCount() != 0 || zone.getTotalBoxesCount() < 0){
+                let boxesPerZone = zone.getZoneSize();
+                let occupiedBoxes = [];
+                while(boxesPerZone > 0){
+                    let cord = cords.split("-");
+                    map.setBoxIn(cord[0], cord[1], new Box(zone.getZoneType, zoneID));
+                    occupiedBoxes.push(cord);
+                    map.getEmptyBoxes(map.avaibleBoxes);
+                    moveToRandomDirection(cords)
+                    if(map.)
+
+                }
+                
+            }else{
+                for(let i = 0; i < zones.length; i++){
+                    if(zones[i].getZoneType() == zone.getZoneType()){
+                        zones.splice(i, 1);
+                    }
+                }
+            }
         }
     });
 
 });
+
+function moveToRandomDirection(cords){
+    const directions = ["UP", "UP-RIGHT", "RIGHT", "DOWN-RIGHT", "DOWN", "DOWN-LEFT", "LEFT", "LEFT-UP"];
+    switch(directions[Math.floor(Math.random() * (directions.length - 0) + 0)]){
+        case "UP":
+            cords[0]++;
+        break;
+        case "UP-RIGHT":
+            cords[0]++;
+            cords[1]++;
+        break;
+        case "RIGHT":
+            cords[1]++;
+        break;
+        case "DOWN-RIGHT":
+            cords[0]--;
+            cords[1]++;
+        break;
+        case "DOWN":
+            cords[0]--;
+        break;
+        case "DOWN-LEFT":
+            cords[0]--;
+            cords[1]--;
+        break;
+        case "LEFT":
+            cords[1]--;
+        break;
+        case "UP-LEFT":
+            cords[0]++;
+            cords[1]--;
+        break;
+    }
+}
+
 /**
  * Función que devuelve un objeto zona aleatorio de un array de objetos Zona.
  * @param {array} zones - Un array de objetos de tipo Zone.
  * @returns {Zone} - Un objeto del tipo Zone.
  */
-
 function getRandomZone(zones){
-    return zones[Math.random() * ((zones.length - 1) - 0) + 0];
+    return zones[Math.floor(Math.random() * ((zones.length) - 0) + 0)];
 }
 
 

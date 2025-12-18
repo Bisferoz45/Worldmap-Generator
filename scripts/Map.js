@@ -1,3 +1,5 @@
+import { Box } from "./Box";
+
 /**
  * Clase de tipo Map.
  * Esta clase está pensada para manejar un array 2D que funciona como mapa por casillas.
@@ -10,9 +12,37 @@ export class Map{
     }
 
     /**
+     * Establece el valor indicado en las coordenadas del mapa indicadas.
+     * @param {iny} r - Indicador de la fila. 
+     * @param {int} c - Indicador de la columna.
+     * @param {Box} v - Casilla a introducir.
+     */
+    setBoxIn(r, c, v){
+        this.mapBoard[r][c] = v;
+    }
+
+    /**
+     * Devuelve el valor de la casilla establecida.
+     * @param {number} r - Número de fila.
+     * @param {number} c - Número de columna.
+     * @returns {any} - Si está vacía (Valor 0) devuelve 0, si no, devuelve objeto tipo Box.
+     */
+    getBoxValue(r, c){
+        return this.mapBoard[r][c];
+    }
+
+    /**
+     * Devuelve una coordenada libre aletoria dentro del array de coordenadas vacías (valor 0).
+     * @returns {string} - Coordenada libre aleratoria (fila-columna).
+     */
+    getRandomCoord(){
+        return this.avaibleBoxes[Math.floor(Math.random() * ((this.avaibleBoxes.length - 1) - 0) + 0)];
+    }
+
+    /**
      * Este método busca en un array de dos dimensiones las celdas vacías (valor 0) y devuelve un array con las coordenadas de cada una.
      * @param {array} mb - Un array de dos dimensiones que representa el mapa
-     * @returns {array} - Un array de Strings que indican las coordenadas (fila-columna) de cada fila vacía (valor 0).
+     * @returns {array} - Un array de Strings que indican las coordenadas (fila-columna) de cada casilla vacía (valor 0).
      */
     getEmptyBoxes(mb){
         let array = [];

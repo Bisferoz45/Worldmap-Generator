@@ -11,6 +11,14 @@ export class Zone{
     }
 
     /**
+     * Devuelve el número de casillas de las que dispondrá la zona a insertar.
+     * @returns {int} - Número de casillas para la zona.
+     */
+    getZoneSize(){
+        return Math.floor(Math.random() * (this.zoneMaxSize - this.zoneMinSize) + this.zoneMinSize);
+    }
+
+    /**
      * Este método devuelve el tipo de zona que es.
      * @returns {string} - Tipo de la zona.
      */
@@ -43,7 +51,7 @@ export class Zone{
     }
 
     /**
-     * Este método devuelve la cantidad de casillas que puede generar.
+     * Este método devuelve la cantidad de casillas que una zona (NATURE, URBAN o COMMERTIAL) puede generar.
      * @returns {int} - Cantidad de casillas que puede generar.
      */
     getTotalBoxesCount(){

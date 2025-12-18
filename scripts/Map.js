@@ -10,7 +10,7 @@ export class Map{
     }
 
     /**
-     * Esta función busca en un array de dos dimensiones las celdas vacías (valor 0) y devuelve un array con las coordenadas de cada una.
+     * Este método busca en un array de dos dimensiones las celdas vacías (valor 0) y devuelve un array con las coordenadas de cada una.
      * @param {array} mb - Un array de dos dimensiones que representa el mapa
      * @returns {array} - Un array de Strings que indican las coordenadas (fila-columna) de cada fila vacía (valor 0).
      */
@@ -44,7 +44,7 @@ export class Map{
     }
 
     /**
-     * Esta función devuelve el atributo mapBoard.
+     * Este método devuelve el atributo mapBoard.
      * @returns {array} - Devuelve un array bidimensional.
      */
     getMapBoard(){
@@ -52,7 +52,7 @@ export class Map{
     }
 
     /**
-     * Esta función devuelve el atributo mapAreaAvaible.
+     * Este método devuelve el atributo mapAreaAvaible.
      * @returns {int} - Devuelve un número. 
      */
     getMapAreaAviable(){
@@ -60,7 +60,7 @@ export class Map{
     }
 
     /**
-     * Esta función devuelve el atributo avaibleBoxes.
+     * Este método devuelve el atributo avaibleBoxes.
      * @returns {array} - Devuelve un array.
      */
     getAviableBoxes(){
@@ -68,7 +68,7 @@ export class Map{
     }
 
     /**
-     * Esta función establece como valor del atributo avaibleBoxes un array de coordenadas.
+     * Este método establece como valor del atributo avaibleBoxes un array de coordenadas.
      * @param {array} ab - Un array con las coordenadas de las casillas vacías (valor 0).
      */
     setAviableBoxes(ab){

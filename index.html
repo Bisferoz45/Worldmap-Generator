@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="./scripts/main.js"></script>
+    <title>World Generator</title>
+</head>
+<body>
+    <form id="form">
+        <h3>GENERAL DATA</h3>
+        MAP SIZE: <input name="MS" type="number" value="20" min="20" required><br>
+        MAP OCCUPIED AREA: <input name="TOA" type="number" value="40" min="40" required>%
+        <hr>
+        <h3>NATURE DATA</h3>
+        MIN ZONES: <input name="N-MiZ" type="number" value="1" min="1" required><br>
+        MAX ZONES: <input name="N-MxZ" type="number" value="7" min="7" required><br>
+        ZONE MAX SIZE: <input name="N-ZMS" type="number" value="40" min="40" required><br>
+        TOTAL MAX AREA: <input name="N-TMA" type="number" value="40" min="40" required><br>
+        <hr>
+        <h3>URBAN DATA</h3>
+        MIN ZONES: <input name="U-MiZ" type="number" value="1" min="1" required><br>
+        MAX ZONES: <input name="U-MxZ" type="number" value="7" min="7" required><br>
+        ZONE MAX SIZE: <input name="U-ZMS" type="number" value="40" min="40" required><br>
+        TOTAL MAX AREA: <input name="U-TMA" type="number" value="40" min="40" required><br>
+        <hr>
+        <h3>COMMERTIAL DATA</h3>
+        MIN ZONES: <input name="C-MiZ" type="number" value="1" min="1" required><br>
+        MAX ZONES: <input name="C-MxZ" type="number" value="7" min="7" required><br>
+        ZONE MAX SIZE: <input name="C-ZMS" type="number" value="40" min="40" required><br>
+        TOTAL MAX AREA: <input name="C-TMA" type="number" value="40" min="40" required>
+        <hr>
+        <button type="submit">GENERATE MAP</button>
+    </form>
+</body>
+</html>

@@ -15,4 +15,4 @@ No requiere instalación ni dependencias externas.
 
 1. Clona el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/nombre-del-repo.git
+git clone https://github.com/Bisferoz45/Worldmap-Generator.git

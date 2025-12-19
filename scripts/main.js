@@ -33,11 +33,40 @@ document.addEventListener("DOMContentLoaded", () => {
                 let occupiedBoxes = [];
                 while(boxesPerZone > 0){
                     let cord = cords.split("-");
-                    map.setBoxIn(cord[0], cord[1], new Box(zone.getZoneType, zoneID));
-                    occupiedBoxes.push(cord);
-                    map.getEmptyBoxes(map.avaibleBoxes);
-                    moveToRandomDirection(cords)
-                    if(map.)
+                    cord[0] = Number(cord[0]);
+                    cord[1] = Number(cord[1]);
+                    console.log(cord);
+                    if(map.getBoxValue(cord[0], cord[1]) == 0){
+                        map.setBoxIn(cord[0], cord[1], new Box(zone.getZoneType, zoneID));
+                        occupiedBoxes.push(cords);
+                        map.getEmptyBoxes(map.avaibleBoxes);
+                        cords = moveToRandomDirection(cords);
+                        boxesPerZone--;
+                    }else{
+                        if(map.haveEmptyBoxesAround(cord[0], cord[1])){
+                            const emptyBoxes = map.getEmptyBoxesAround(cord[0], cord[1]);
+                            cords = emptyBoxes[Math.floor(Math.random() * (emptyBoxes.length - 0) + 0)];
+                        }else{
+                            let emptyBoxes = [];
+                            occupiedBoxes.forEach((c) => {
+                                let crd = c.split("-");
+                                if(map.getBoxValue(crd[0], crd[1]).getZoneID() == zoneID){
+                                    if(map.haveEmptyBoxesAround(crd[0], crd[1])){
+                                        let tmp = map.getEmptyBoxesAround(crd[0], crd[1]);
+                                        tmp.forEach((element) => {
+                                            emptyBoxes.push(element);
+                                        });
+                                    }
+                                }
+                            });
+
+                            if(emptyBoxes.length > 0){
+                                cords = emptyBoxes[Math.floor(Math.random() * (emptyBoxes.length - 0) + 0)];
+                            }else{
+                                boxesPerZone = 0;
+                            }
+                        }
+                    }
 
                 }
                 
@@ -49,42 +78,52 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         }
+
+        console.log(map.mapBoard);
     });
 
 });
 
+/**
+ * Función encargada de seleccionar una dirección aleatoria y modificar las coordenadas en función de esa dirección.
+ * @param {string} cords - Coordenada a cambiar (fila-columna). 
+ * @returns {string} - Devuelve las nuevas coordenadas (fila-columna).
+ */
 function moveToRandomDirection(cords){
+    let cord = cords.split("-");
     const directions = ["UP", "UP-RIGHT", "RIGHT", "DOWN-RIGHT", "DOWN", "DOWN-LEFT", "LEFT", "LEFT-UP"];
     switch(directions[Math.floor(Math.random() * (directions.length - 0) + 0)]){
         case "UP":
-            cords[0]++;
+            cord[0]++;
         break;
         case "UP-RIGHT":
-            cords[0]++;
-            cords[1]++;
+            cord[0]++;
+            cord[1]++;
         break;
         case "RIGHT":
-            cords[1]++;
+            cord[1]++;
         break;
         case "DOWN-RIGHT":
-            cords[0]--;
-            cords[1]++;
+            cord[0]--;
+            cord[1]++;
         break;
         case "DOWN":
-            cords[0]--;
+            cord[0]--;
         break;
         case "DOWN-LEFT":
-            cords[0]--;
-            cords[1]--;
+            cord[0]--;
+            cord[1]--;
         break;
         case "LEFT":
-            cords[1]--;
+            cord[1]--;
         break;
         case "UP-LEFT":
-            cords[0]++;
-            cords[1]--;
+            cord[0]++;
+            cord[1]--;
         break;
     }
+
+    return `${cord[0]}-${cord[0]}`;
 }
 
 /**

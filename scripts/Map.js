@@ -1,4 +1,4 @@
-import { Box } from "./Box";
+import { Box } from "./Box.js";
 
 /**
  * Clase de tipo Map.
@@ -9,6 +9,94 @@ export class Map{
         this.mapBoard = this.generateEmptyBoard(ms);
         this.mapAreaAvaible = moa;
         this.avaibleBoxes = this.getEmptyBoxes(this.mapBoard);
+    }
+
+    /**
+     * Esta función revisa las casillas alrededor de las coordenadas indicada y devuelve un array de las casillas que se encuentren vacías.
+     * @param {number} r - Número que indica la fila.
+     * @param {number} c - Número que indica la columna.
+     * @returns {array} - Devuelve un array con las casillas vacías.
+     */
+    getEmptyBoxesAround(r, c){
+        let emptyBoxes = [];
+        if(r == 0){
+            if(c == 0){
+                if(this.mapBoard[r][c++] == 0){emptyBoxes.push(`${r}-${c++}`);}
+                if(this.mapBoard[r++][c] == 0){emptyBoxes.push(`${r++}-${c}`);}
+                if(this.mapBoard[r++][c++] == 0){emptyBoxes.push(`${r++}-${c++}`);}
+            
+            }else if(c == this.mapBoard[r].length-1){
+                if(this.mapBoard[r][c--] == 0){emptyBoxes.push(`${r}-${c--}`);}
+                if(this.mapBoard[r++][c] == 0){emptyBoxes.push(`${r++}-${c}`);}
+                if(this.mapBoard[r++][c--] == 0){emptyBoxes.push(`${r++}-${c--}`);}
+            
+            }else{
+                if(this.mapBoard[r][c++] == 0){emptyBoxes.push(`${r}-${c++}`);}
+                if(this.mapBoard[r++][c] == 0){emptyBoxes.push(`${r++}-${c}`);}
+                if(this.mapBoard[r++][c++] == 0){emptyBoxes.push(`${r++}-${c++}`);}
+                if(this.mapBoard[r][c--] == 0){emptyBoxes.push(`${r}-${c--}`);}
+                if(this.mapBoard[r++][c--] == 0){emptyBoxes.push(`${r++}-${c--}`);}
+            }
+        
+        }else if(r == this.mapBoard.length-1){
+            if(c == 0){
+                if(this.mapBoard[r][c++] == 0){emptyBoxes.push(`${r}-${c++}`);}
+                if(this.mapBoard[r--][c] == 0){emptyBoxes.push(`${r--}-${c}`);}
+                if(this.mapBoard[r--][c++] == 0){emptyBoxes.push(`${r--}-${c++}`);}
+            
+            }else if(c == this.mapBoard[r].length-1){
+                if(this.mapBoard[r--][c--] == 0){emptyBoxes.push(`${r--}-${c--}`);}
+                if(this.mapBoard[r][c--] == 0){emptyBoxes.push(`${r}-${c--}`);}
+            
+            }else{
+                if(this.mapBoard[r][c++] == 0){emptyBoxes.push(`${r}-${c++}`);}
+                if(this.mapBoard[r][c--] == 0){emptyBoxes.push(`${r}-${c--}`);}
+                if(this.mapBoard[r--][c++] == 0){emptyBoxes.push(`${r--}-${c++}`);}
+                if(this.mapBoard[r--][c--] == 0){emptyBoxes.push(`${r--}-${c--}`);}
+                if(this.mapBoard[r--][c] == 0){emptyBoxes.push(`${r--}-${c}`);}
+            }
+
+        }else{
+            if(c == 0){
+                if(this.mapBoard[r][c++] == 0){emptyBoxes.push(`${r}-${c++}`);}
+                if(this.mapBoard[r++][c] == 0){emptyBoxes.push(`${r++}-${c}`);}
+                if(this.mapBoard[r++][c++] == 0){emptyBoxes.push(`${r++}-${c++}`);}
+                if(this.mapBoard[r--][c] == 0){emptyBoxes.push(`${r--}-${c}`);}
+                if(this.mapBoard[r--][c++] == 0){emptyBoxes.push(`${r++}-${c++}`);}
+
+            }else if(c == this.mapBoard[r].length-1){
+                if(this.mapBoard[r++][c] == 0){emptyBoxes.push(`${r++}-${c}`);}
+                if(this.mapBoard[r][c--] == 0){emptyBoxes.push(`${r}-${c--}`);}
+                if(this.mapBoard[r--][c] == 0){emptyBoxes.push(`${r--}-${c}`);}
+                if(this.mapBoard[r--][c--] == 0){emptyBoxes.push(`${r--}-${c--}`);}
+                if(this.mapBoard[r++][c--] == 0){emptyBoxes.push(`${r++}-${c++}`);}
+                
+            }else{
+                if(this.mapBoard[r][c++] == 0){emptyBoxes.push(`${r}-${c++}`);}
+                if(this.mapBoard[r++][c] == 0){emptyBoxes.push(`${r++}-${c}`);}
+                if(this.mapBoard[r++][c++] == 0){emptyBoxes.push(`${r++}-${c++}`);}
+                if(this.mapBoard[r][c--] == 0){emptyBoxes.push(`${r}-${c--}`);}
+                if(this.mapBoard[r--][c] == 0){emptyBoxes.push(`${r--}-${c}`);}
+                if(this.mapBoard[r--][c--] == 0){emptyBoxes.push(`${r--}-${c--}`);}
+                if(this.mapBoard[r++][c--] == 0){emptyBoxes.push(`${r++}-${c++}`);}
+                if(this.mapBoard[r--][c++] == 0){emptyBoxes.push(`${r++}-${c++}`);}
+            }
+        }
+        return emptyBoxes;
+    }
+
+    /**
+     * Esta función compara todas las casillas alrededor de las coordenadas indicadas y devuelve true si encuentra alguna casilla vacía.
+     * @param {number} r - Número que indica la fila.
+     * @param {number} c - Número que indica la columna.
+     * @returns {boolean} - Devuelve true si encuentra alguna casilla libre alrededor de las coordenadas indicadas
+     */
+    haveEmptyBoxesAround(r, c){
+        if(this.mapBoard[r][c++] == 0 || this.mapBoard[r++][c] == 0 || this.mapBoard[r++][c++] == 0 || this.mapBoard[r][c--] == 0 || this.mapBoard[r--][c] == 0 || this.mapBoard[r--][c--] == 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**

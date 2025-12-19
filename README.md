@@ -3,6 +3,8 @@
 Generador de mundos desarrollado **puramente en JavaScript y HTML**.  
 El proyecto crea mundos de forma automática siguiendo las especificaciones que le indique el usuario.
 
+**EN ESTOS MOMENTOS SE ENCUENTRA EN DESARROYO**
+
 ## 🛠️ Tecnologías utilizadas
 
 - HTML5
